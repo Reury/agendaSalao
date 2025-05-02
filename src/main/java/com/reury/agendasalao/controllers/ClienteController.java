@@ -1,7 +1,9 @@
 package com.reury.agendasalao.controllers;
 
 import com.reury.agendasalao.models.Cliente;
+import com.reury.agendasalao.models.Endereco;
 import com.reury.agendasalao.repositories.ClienteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,9 @@ public class ClienteController {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    
+
     @GetMapping
     public List<Cliente> listarClientes() {
         return clienteRepository.findAll();
@@ -22,6 +27,8 @@ public class ClienteController {
 
     @PostMapping
     public Cliente cadastrarCliente(@RequestBody Cliente cliente) {
+        // Endereco enderecoCompleto = viaCepService.consultarCep(cliente.getEndereco().getCep());
+        // cliente.setEndereco(enderecoCompleto);
         return clienteRepository.save(cliente);
     }
 

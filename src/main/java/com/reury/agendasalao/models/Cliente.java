@@ -2,6 +2,8 @@ package com.reury.agendasalao.models;
 
 import java.util.UUID;
 
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,13 +19,17 @@ public class Cliente {
     private String email;
     private String telefone;
 
+    @Embedded
+    private Endereco endereco;
+
     public Cliente() {
     }
 
-    public Cliente(String nome, String email, String telefone) {
+    public Cliente(String nome, String email, String telefone, Endereco endereco) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+        this.endereco = endereco;
     }
 
     // Getters and Setters
@@ -57,5 +63,13 @@ public class Cliente {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
