@@ -1,41 +1,53 @@
 package com.reury.agendasalao.models;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Endereco {
-    private String rua;
-    private String numero;
-    private String bairro;
-    private String cidade;
-    private String estado;
     private String cep;
+    private String logradouro; // Correspondente a "rua"
     private String complemento;
+    private String bairro;
+    private String localidade; // Correspondente a "cidade"
+    private String uf; // Correspondente a "estado"
+    private String numero; // Campo adicional para o número do endereço
 
     public Endereco() {
     }
 
-    public Endereco(String rua, String numero, String bairro, String cidade, String estado, String cep) {
-        this.rua = rua;
-        this.numero = numero;
+    public Endereco(String cep, String logradouro, String complemento, String bairro, String localidade, String uf, String numero) {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.complemento = complemento;
         this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
+        this.localidade = localidade;
+        this.uf = uf;
+        this.numero = numero;
+    }
+
+    // Getters e Setters
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
-    // Getters and Setters
-    public String getRua() {
-        return rua;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getBairro() {
@@ -46,34 +58,27 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getLocalidade() {
+        return localidade;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getUf() {
+        return uf;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 
-    public String getCep() {
-        return cep;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
-    public String getComplemento() {
-        return complemento;
-    }
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-    
 }

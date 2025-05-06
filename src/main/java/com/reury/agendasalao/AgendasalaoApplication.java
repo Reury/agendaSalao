@@ -26,21 +26,21 @@ public class AgendasalaoApplication implements CommandLineRunner {
             "João Silva",
             "joao.silva@email.com",
             "123456789",
-            new Endereco("Rua das Flores", "123", "Centro", "São Paulo", "SP", "12345-678")
+            new Endereco("01001-000", "Praça da Sé", "", "Sé", "São Paulo", "SP", "123")
         ));
-
+    
         clienteRepository.save(new Cliente(
             "Maria Oliveira",
             "maria.oliveira@email.com",
             "987654321",
-            new Endereco("Avenida Brasil", "456", "Jardins", "Rio de Janeiro", "RJ", "23456-789")
+            new Endereco("20040-010", "Avenida Rio Branco", "Sala 1", "Centro", "Rio de Janeiro", "RJ", "456")
         ));
-
+    
         clienteRepository.save(new Cliente(
             "Carlos Santos",
             "carlos.santos@email.com",
             "555555555",
-            new Endereco("Rua das Palmeiras", "789", "Vila Nova", "Belo Horizonte", "MG", "34567-890")
+            new Endereco("30130-010", "Rua dos Guajajaras", "Apto 101", "Centro", "Belo Horizonte", "MG", "789")
         ));
 
         System.out.println("Clientes de exemplo cadastrados!");
