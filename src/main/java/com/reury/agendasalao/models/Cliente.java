@@ -1,10 +1,12 @@
 package com.reury.agendasalao.models;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,6 +24,15 @@ public class Cliente {
     @Embedded
     private Endereco endereco;
 
+    // Campos relacionados à assinatura
+    @Enumerated(EnumType.STRING)
+    private TipoAssinatura tipoAssinatura; // Ex.: "mensal", "anual"
+
+    private boolean assinaturaAtiva;
+    private LocalDate dataInicioAssinatura;
+    private LocalDate dataFimAssinatura;
+    private String metodoPagamentoPreferido; // Ex.: "cartao", "pix"
+
     public Cliente() {
     }
 
@@ -30,9 +41,10 @@ public class Cliente {
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
+        this.assinaturaAtiva = false; // Assinatura inativa por padrão
     }
 
-    // Getters and Setters
+    // Getters e Setters
     public UUID getId() {
         return id;
     }
@@ -71,5 +83,45 @@ public class Cliente {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public TipoAssinatura getTipoAssinatura() {
+        return tipoAssinatura;
+    }
+
+    public void setTipoAssinatura(TipoAssinatura tipoAssinatura) {
+        this.tipoAssinatura = tipoAssinatura;
+    }
+
+    public boolean isAssinaturaAtiva() {
+        return assinaturaAtiva;
+    }
+
+    public void setAssinaturaAtiva(boolean assinaturaAtiva) {
+        this.assinaturaAtiva = assinaturaAtiva;
+    }
+
+    public LocalDate getDataInicioAssinatura() {
+        return dataInicioAssinatura;
+    }
+
+    public void setDataInicioAssinatura(LocalDate dataInicioAssinatura) {
+        this.dataInicioAssinatura = dataInicioAssinatura;
+    }
+
+    public LocalDate getDataFimAssinatura() {
+        return dataFimAssinatura;
+    }
+
+    public void setDataFimAssinatura(LocalDate dataFimAssinatura) {
+        this.dataFimAssinatura = dataFimAssinatura;
+    }
+
+    public String getMetodoPagamentoPreferido() {
+        return metodoPagamentoPreferido;
+    }
+
+    public void setMetodoPagamentoPreferido(String metodoPagamentoPreferido) {
+        this.metodoPagamentoPreferido = metodoPagamentoPreferido;
     }
 }

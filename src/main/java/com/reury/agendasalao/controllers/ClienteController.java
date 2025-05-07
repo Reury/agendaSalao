@@ -1,10 +1,8 @@
 package com.reury.agendasalao.controllers;
 
+import com.reury.agendasalao.facades.ClienteFacade;
 import com.reury.agendasalao.models.Cliente;
-import com.reury.agendasalao.models.Endereco;
-import com.reury.agendasalao.repositories.ClienteRepository;
-import com.reury.agendasalao.services.ViaCepService;
-
+import com.reury.agendasalao.models.TipoAssinatura;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,39 +14,35 @@ import java.util.UUID;
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository clienteRepository;
-
-    @Autowired
-    private ViaCepService viaCepService;
+    private ClienteFacade clienteFacade;
 
     @GetMapping
     public List<Cliente> listarClientes() {
-        return clienteRepository.findAll();
+        return clienteFacade.listarClientes();
     }
 
     @PostMapping
     public Cliente cadastrarCliente(@RequestBody Cliente cliente) {
-        Endereco enderecoCompleto = viaCepService.consultarCep(cliente.getEndereco().getCep());
-        cliente.setEndereco(enderecoCompleto);
-        return clienteRepository.save(cliente);
+        return clienteFacade.cadastrarCliente(cliente);
     }
 
-    @GetMapping("/{id}")
-    public Cliente buscarCliente(@PathVariable UUID id) {
-        return clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+    @PatchMapping("/{id}/atualizar-assinatura")
+    public Cliente atualizarAssinatura(
+            @PathVariable UUID id,
+            @RequestParam String tipoAssinatura,
+            @RequestParam String metodoPagamento) {
+
+        TipoAssinatura assinatura = TipoAssinatura.valueOf(tipoAssinatura.toUpperCase());
+        return clienteFacade.atualizarAssinatura(id, assinatura, metodoPagamento);
     }
 
-    @PutMapping("/{id}")
-    public Cliente atualizarCliente(@PathVariable UUID id, @RequestBody Cliente clienteAtualizado) {
-        Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-        cliente.setNome(clienteAtualizado.getNome());
-        cliente.setEmail(clienteAtualizado.getEmail());
-        cliente.setTelefone(clienteAtualizado.getTelefone());
-        return clienteRepository.save(cliente);
+    @PostMapping("/{id}/processar-pagamento")
+    public String processarPagamento(@PathVariable UUID id) {
+        return clienteFacade.processarPagamento(id);
     }
 
-    @DeleteMapping("/{id}")
-    public void deletarCliente(@PathVariable UUID id) {
-        clienteRepository.deleteById(id);
+    @GetMapping("/{id}/verificar-assinatura")
+    public boolean verificarAssinatura(@PathVariable UUID id) {
+        return clienteFacade.verificarAssinatura(id);
     }
 }
