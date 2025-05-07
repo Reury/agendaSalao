@@ -1,6 +1,6 @@
 # Agenda Salão
 
-Este é um projeto de API REST para gerenciar o cadastro de clientes e assinaturas de um salão de beleza. A aplicação foi desenvolvida utilizando **Spring Boot**, com foco em boas práticas de desenvolvimento e padrões de projeto.
+Este é um projeto de API REST para gerenciar o cadastro de clientes e assinaturas de um salão de beleza. A aplicação foi desenvolvida utilizando **Spring Boot**, com foco em boas práticas de desenvolvimento, padrões de projeto e escalabilidade.
 
 ---
 
@@ -24,6 +24,8 @@ Este é um projeto de API REST para gerenciar o cadastro de clientes e assinatur
   - Spring Context
 - **H2 Database** (banco de dados em memória)
 - **Maven**
+- **JUnit 5** (para testes unitários e de integração)
+- **MockMvc** (para simular requisições HTTP em testes)
 
 ---
 
@@ -32,13 +34,13 @@ Este é um projeto de API REST para gerenciar o cadastro de clientes e assinatur
 O projeto foi desenvolvido com foco em boas práticas e padrões de projeto. Abaixo estão os principais padrões aplicados:
 
 ### **1. Facade**
-- **Descrição**: O padrão Facade foi implementado para centralizar a lógica de negócios relacionada aos clientes.
+- **Descrição**: Centraliza a lógica de negócios relacionada aos clientes.
 - **Exemplo no Projeto**:
   - A classe `ClienteFacade` encapsula operações como cadastro de clientes, atualização de assinaturas, processamento de pagamentos e verificação de assinaturas.
   - Isso simplifica o controlador (`ClienteController`), que delega a lógica de negócios ao `ClienteFacade`.
 
 ### **2. Strategy**
-- **Descrição**: O padrão Strategy foi utilizado para implementar diferentes métodos de pagamento.
+- **Descrição**: Implementa diferentes métodos de pagamento.
 - **Exemplo no Projeto**:
   - A interface `MetodoPagamento` define o contrato para os métodos de pagamento.
   - As classes `PagamentoCartao` e `PagamentoPix` implementam a lógica específica para cada método de pagamento.
@@ -50,15 +52,14 @@ O projeto foi desenvolvido com foco em boas práticas e padrões de projeto. Aba
   - As classes `ClienteFacade`, `ViaCepService` e `AssinaturaService` são anotadas com `@Component` ou `@Service` e injetadas automaticamente onde necessário usando `@Autowired`.
 
 ### **4. Repository Pattern**
-- **Descrição**: O padrão Repository foi utilizado para abstrair o acesso ao banco de dados.
+- **Descrição**: Abstrai o acesso ao banco de dados.
 - **Exemplo no Projeto**:
   - A interface `ClienteRepository` estende `JpaRepository`, fornecendo métodos prontos para operações CRUD.
 
 ### **5. Singleton**
-Descrição: O padrão Singleton é utilizado implicitamente pelo Spring para gerenciar beans.
-Exemplo no Projeto:
-Classes como ClienteFacade, ViaCepService, e AssinaturaService são gerenciadas como singletons pelo contêiner de IoC do Spring.
-Isso garante que apenas uma instância dessas classes seja criada e reutilizada em toda a aplicação.
+- **Descrição**: Gerencia beans como singletons implicitamente pelo Spring.
+- **Exemplo no Projeto**:
+  - Classes como `ClienteFacade`, `ViaCepService` e `AssinaturaService` são gerenciadas como singletons pelo contêiner de IoC do Spring.
 
 ---
 
