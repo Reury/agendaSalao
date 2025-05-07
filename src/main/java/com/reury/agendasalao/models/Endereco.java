@@ -24,6 +24,15 @@ public class Endereco {
         this.uf = uf;
         this.numero = numero;
     }
+    public Endereco(String cep) {
+        this.cep = cep;
+        this.logradouro = null;
+        this.complemento = null;
+        this.bairro = null;
+        this.localidade = null;
+        this.uf = null;
+        this.numero = null;
+    }
 
     // Getters e Setters
     public String getCep() {
@@ -33,6 +42,8 @@ public class Endereco {
     public void setCep(String cep) {
         this.cep = cep;
     }
+
+    
 
     public String getLogradouro() {
         return logradouro;

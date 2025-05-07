@@ -36,6 +36,11 @@ public class ClienteController {
         return clienteFacade.atualizarAssinatura(id, assinatura, metodoPagamento);
     }
 
+    @DeleteMapping("/{id}")
+    public void deletarCliente(@PathVariable UUID id) {
+        clienteFacade.deletarCliente(id);
+}
+
     @PostMapping("/{id}/processar-pagamento")
     public String processarPagamento(@PathVariable UUID id) {
         return clienteFacade.processarPagamento(id);
