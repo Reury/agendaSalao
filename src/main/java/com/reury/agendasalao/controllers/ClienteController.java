@@ -3,6 +3,10 @@ package com.reury.agendasalao.controllers;
 import com.reury.agendasalao.facades.ClienteFacade;
 import com.reury.agendasalao.models.Cliente;
 import com.reury.agendasalao.models.TipoAssinatura;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,12 +15,14 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/clientes")
+@Tag(name = "Clientes", description = "Gerenciamento de clientes e assinaturas")
 public class ClienteController {
 
     @Autowired
     private ClienteFacade clienteFacade;
 
     @GetMapping
+    @Operation(summary = "Listar Clientes", description = "Retorna todos os clientes cadastrados.")
     public List<Cliente> listarClientes() {
         return clienteFacade.listarClientes();
     }

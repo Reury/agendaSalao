@@ -63,6 +63,8 @@ O projeto foi desenvolvido com foco em boas práticas e padrões de projeto. Aba
 
 ---
 
+
+
 ## 📦 Como Executar o Projeto
 
 ### Pré-requisitos
@@ -138,6 +140,7 @@ O projeto pode ser testado utilizando ferramentas como **Postman** ou **cURL** p
 Este projeto não está licenciado.
 
 ---
+
 
 ## 👨‍💻 Autor
 
