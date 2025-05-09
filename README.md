@@ -22,7 +22,8 @@ Este é um projeto de API REST para gerenciar o cadastro de clientes e assinatur
   - Spring Web
   - Spring Data JPA
   - Spring Context
-- **H2 Database** (banco de dados em memória)
+- **PostgreSQL** (banco de dados em produção)
+- **H2 Database** (banco de dados em memória para desenvolvimento)
 - **Maven**
 - **JUnit 5** (para testes unitários e de integração)
 - **MockMvc** (para simular requisições HTTP em testes)
@@ -63,8 +64,6 @@ O projeto foi desenvolvido com foco em boas práticas e padrões de projeto. Aba
 
 ---
 
-
-
 ## 📦 Como Executar o Projeto
 
 ### Pré-requisitos
@@ -95,6 +94,24 @@ O projeto foi desenvolvido com foco em boas práticas e padrões de projeto. Aba
 
 ---
 
+## 🌐 Deploy no Railway
+
+O projeto está configurado para ser executado no Railway com o banco de dados PostgreSQL. Para configurar o deploy:
+
+1. **Adicione as Variáveis de Ambiente no Railway**:
+   - `SPRING_PROFILES_ACTIVE=prod`
+   - `SPRING_DATASOURCE_URL=jdbc:postgresql://<host>:<port>/<database>`
+   - `SPRING_DATASOURCE_USERNAME=<username>`
+   - `SPRING_DATASOURCE_PASSWORD=<password>`
+
+2. **Faça o Deploy**:
+   - Conecte o repositório ao Railway e inicie o deploy.
+
+3. **Acesse a API**:
+   - O Railway fornecerá uma URL pública para acessar a API.
+
+---
+
 ## 📖 Exemplos de Uso da API
 
 ### **1. Cadastrar Cliente**
@@ -106,7 +123,13 @@ O projeto foi desenvolvido com foco em boas práticas e padrões de projeto. Aba
     "email": "joao.silva@email.com",
     "telefone": "123456789",
     "endereco": {
-        "cep": "01001-000"
+        "cep": "01001-000",
+        "logradouro": "Praça da Sé",
+        "complemento": "",
+        "bairro": "Sé",
+        "localidade": "São Paulo",
+        "uf": "SP",
+        "numero": "123"
     },
     "tipoAssinatura": "PREMIUM",
     "metodoPagamentoPreferido": "cartao"
@@ -140,7 +163,6 @@ O projeto pode ser testado utilizando ferramentas como **Postman** ou **cURL** p
 Este projeto não está licenciado.
 
 ---
-
 
 ## 👨‍💻 Autor
 
